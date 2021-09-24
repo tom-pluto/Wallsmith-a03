@@ -32,19 +32,40 @@ ASSIGNMENT DESCRIPTION
 
 package baseline;
 
-public class Solution26 {
-    public static void main(String[] args) {
-        //TO THE GRADER:
-        //I know it says I need to break it up,
-        //but please agree with me when doing that doesn't make any sense here, atleast in the planning phase.
+import java.util.Scanner;
 
-        //Prompt for and read balance
+import static java.lang.String.format;
+
+public class Solution26 {
+
+    private static final Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        //Prompt for and read b
+        System.out.printf("%s", "What is your balance? ");
+        double b = sc.nextDouble();
+
         //Prompt for and read APR
-        //Calculate daily rate (APR/365)
+        System.out.printf("%s", "What is the APR on the card (as a percent)? ");
+        double i = ((sc.nextDouble())/100)/365;  // daily rate = (APR/365)
+
         //Prompt for and read p (monthly payment)
+        System.out.printf("%s", "What is the monthly payment you can make? ");
+        double p = sc.nextDouble();
+
         //Construct new PaymentCalculator class
+        PaymentCalculator pC = new PaymentCalculator(i,b,p);
+
         //Call calculateMonthsUntilPayOff on the class & store result
+        double months = pC.calculateMonthsUntilPaidOff();
+
         //Print result
+        System.out.printf("%s\n", getOutput(months));;
+    }
+
+    public static String getOutput(double months) {
+        return format("It will take you %.0f months to pay off this card.", months);
     }
 }
 
