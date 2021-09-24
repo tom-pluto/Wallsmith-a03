@@ -29,39 +29,81 @@
 
 package baseline;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
 public class Solution25 {
+
+    public static final Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        //Prompt the console for a string
-        //Scan in the string
+        System.out.print("Please enter a password: ");      //Prompt the console for a string
+        String string = sc.next();                          //Scan in the string
 
-        //Call passwordValidator() and store resulting number
+        int strength = passwordValidator(string);           //Call passwordValidator() and store resulting number
 
-        //Call createOutput() to generate the output in a string
-        //Print output statement
+        String output = createOutput(string, strength);     //Call createOutput() to generate the output in a string
+        System.out.printf("%s", output);                    //Print output statement
 
     }
     public static int passwordValidator(String string){
 
         /*
-         *  Takes in a string and determines if it is a very weak (0), weak (1), strong (2), or very strong (3) password.
-         *      - a "very weak" password contains only numbers and is fewer than eight characters.
-         *      - a "weak" password contains only letters and is fewer than eight characters.
-         *      - a "strong" password contains letters and at least one number and is at least eight characters.
-         *      - a "very strong" password contains letters, numbers, and special characters and is at least
-         *        eight characters.
+         *  FUNCTION OVERVIEW
+         *  Takes a string, and determines the "strength" of the string as an integer 0-3 inclusive.
+         *      0 = only numbers + fewer than 8 characters
+         *      1 = only letters + fewer than 8 characters
+         *      2 = contains letters and numbers + 8 or more characters
+         *      3 = contains a letter, a number, and a special character + 8 or more characters
          */
 
-        //If the string contains only numbers and is >8 characters
-            //Return 0 (very weak)
-        //Else if the string contains only letters and is >8 characters
-            //Return 1 (weak)
-        //Else if the string contains letters and 1<= number and is 8<= characters
-            //Return 2 (strong)
-        //Else if the string contains letter, number, and special character and 8<= characters
-            //Return 3 (very strong)
+        //Declare boolean variables for the different criteria of a password
+        boolean hasNumber = false, hasLetter = false, hasSpecialCharacter = false, hasEightCharacters = false;
+        Set<Character> set = new HashSet<Character>(Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'));
 
+        //Find what which of the criteria is present in the given string
+
+        if(string.length() >= 8){                       //determines if string is 8 characters
+            hasEightCharacters = true;
+        }
+        for(char i : string.toCharArray()){             //starts a loop through a character array
+            if(Character.isAlphabetic(i)){                  //checks to see if current element is a letter
+                hasLetter = true;
+            }
+            else if(Character.isDigit(i)){                  //checks to see if current element is a number
+                hasNumber = true;
+            }
+            else if(set.contains(i)){                       //checks to see if current element is a special character
+                hasSpecialCharacter = true;
+            }
+        }
+
+        //Determine what "strength" the string has
+        int strength = getStrength(hasNumber, hasLetter, hasSpecialCharacter, hasEightCharacters);
+        return strength;    //Returns the strength integer
     }
+
+    private static int getStrength(boolean hasNumber, boolean hasLetter, boolean hasSpecialCharacter, boolean hasEightCharacters) {
+
+        if( (hasNumber) && !(hasLetter) && !(hasEightCharacters) ){
+            return 0;   //strength 0 condition
+        }
+        else if( !(hasNumber) && (hasLetter) && !(hasEightCharacters) ){
+            return 1;   //strength 1 condition
+        }
+        else if( (hasNumber) && (hasLetter) && (hasEightCharacters) && !(hasSpecialCharacter)){
+            return 2;   //strength 2 condition
+        }
+        else if( (hasNumber) && (hasLetter) && (hasSpecialCharacter) && (hasEightCharacters) ){
+            return 3;   //strength 3 condition
+        }
+
+        return -1;  //this means a horrible error has occurred :)
+    }
+
     public static String createOutput (String string, int strength){
 
         /*
@@ -77,5 +119,22 @@ public class Solution25 {
             // string = "The password 'string' is a strong password."
         //Else if strength == 3
             // string = "The password 'string' is a very strong password."
+
+        String output = null;
+
+        if(strength == 0){
+            output = String.format("The password '%s' is a very weak password.%n", string);
+        }
+        else if(strength == 1){
+            output = String.format("The password '%s' is a weak password.%n", string);
+        }
+        else if(strength == 2){
+            output = String.format("The password '%s' is a strong password.%n", string);
+        }
+        else if(strength == 3){
+            output = String.format("The password '%s' is a very strong password.%n", string);
+        }
+
+        return output;
     }
 }
