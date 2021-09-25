@@ -5,16 +5,21 @@
 
 package baseline;
 
+import java.util.Scanner;
+
 public class Solution29 {
+
+    private static final Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        //Call getRate() to prompt and read in valid input
-        //Call getYears(input) to get number of years needed to double the investment
-        //Print output
+
+        int rate = getRate();                           //Call getRate() to prompt and read in valid input
+        System.out.printf("%s%n", getYears(rate));      //Print output string from getYears()
 
     }
 
-    public static String getYears(double rate) {
+    public static String getYears(int rate) {
 
         /*
         Calculates the number of years needed to double the initial investment.
@@ -22,13 +27,11 @@ public class Solution29 {
         Formula : 72 / r
          */
 
-        //years = (72 / rate)
-        //Return "It will take <rate> years to double your initial investment"
-
-        return "";
+        int years = 72/rate;
+        return  String.format("It will take %d years to double your initial investment.", years);
     }
 
-    private static double getRate() {
+    private static int getRate() {
 
         /*
         Prompts for the rate of return and only accepts a numeric value
@@ -40,6 +43,25 @@ public class Solution29 {
             //Else, print "Sorry. That's not a valid input.\n"
         //Return rate
 
-        return 0;
+        String input;
+        int rate;
+
+        while(true){
+            System.out.printf("%s", "What is the rate of return? ");
+            input = sc.next();
+
+            try {
+                rate = Integer.parseInt(input);
+                if(rate > 0){
+                    break;  //exits loop if input does not create a NumberFormatException and is greater than 0
+                }
+                System.out.printf("Sorry. That's not a valid input.%n");
+            }catch(NumberFormatException e) {       //uses an exception catch to detect if input is not an integer
+                System.out.printf("Sorry. That's not a valid input.%n");
+            }
+
+        }
+
+        return rate;
     }
 }
