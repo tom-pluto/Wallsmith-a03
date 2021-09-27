@@ -31,9 +31,9 @@ package baseline;
 public class Solution30 {
     public static void main(String[] args) {
 
-        //Call getMultiplicationTable on new 2D array to populate the array with the data
-        //Call getOutput to convert the 2D array into a string that resembles a table
-        //Print output
+        int[][] multiTable = getMultiplicationTable();      //Call getMultiplicationTable() to generate multiTable[][]
+        System.out.printf("%s", getOutput(multiTable));     //Print the output text by calling getOutput to make string
+
     }
     public static int[][] getMultiplicationTable(){
 
@@ -42,13 +42,15 @@ public class Solution30 {
         Does so by using a nested for loop that multiplies the row by the column at each element to get the value.
          */
 
-        //Generates a 12x12 2D array
-        //For i = 0; i < 12; i++
-            //For j = 0; j < 12; j++
-                //multiTable[i][j] = (i+1)*(j+1)
-        //Return multiTable
+        int[][] multiTable = new int[12][12];                   //Generates 12x12 2D array
 
-        return null;
+        for (int i = 0; i < 12; i++) {                          //For loop through rows
+            for (int j = 0; j < 12; j++) {                          //For loop through columns
+                multiTable[i][j] = (i+1)*(j+1);                         //Assigns row*column as value
+            }
+        }
+
+        return multiTable;                                      //Returns filled 2D array
     }
     public static String getOutput(int[][] multiTable) {
 
@@ -56,13 +58,14 @@ public class Solution30 {
         Generates a "table" from a passed 2D array, outputting as a string.
          */
 
-        //Create blank output string
-        //For i = 0; i < 12; i++
-            //For j = 0; j < 12; j++
-                //Add multiTable[i][j] to the output string + space
-            //Add newline to the output string
-        //Return output string
+        StringBuilder output = new StringBuilder();                         //creates blank output string
+        for (int i = 0; i < 12; i++) {                                      //For loop through column
+            for (int j = 0; j < 12; j++) {                                      //For loop through row
+                output.append(String.format("%5d", multiTable[i][j]));              //Add current element to output
+            }
+            output.append("\n");                                                //Append newline at end of row
+        }
 
-        return "";
+        return output.toString();                                           //Return output string
     }
 }
