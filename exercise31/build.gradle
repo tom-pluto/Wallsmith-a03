@@ -27,3 +27,5 @@ run {
 application {
     mainClass = "baseline.Solution31"
 }
+sourceCompatibility = JavaVersion.VERSION_15
+targetCompatibility = JavaVersion.VERSION_15

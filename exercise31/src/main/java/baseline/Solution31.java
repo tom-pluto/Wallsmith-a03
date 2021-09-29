@@ -37,49 +37,73 @@ Example Output
 
 package baseline;
 
+import java.util.Scanner;
+
+import static java.lang.String.format;
+
 public class Solution31 {
+
+    private static final Scanner sc = new Scanner(System.in);
+
+
     public static void main(String[] args) {
 
-        //Prompt and read in restingHR using getInput()
-        //Prompt and read in age using getInput()
-        //Call getData() to build an array of heart rates from 55%-95%
-        //Call getOutput() and output result
+
+        int restingHR = getInput("Enter resting heart rate: ");  //Prompt and read in restingHR using getInput()
+        int age = getInput("Enter age: ");                          //Prompt and read in age using getInput()
+        int[] data = getData(restingHR, age);                              //Build array containing KHR formula results
+        System.out.printf("%s", getOutput(data, restingHR, age));          //Call getOutput() and output result
 
     }
+
+
     public static int[] getData(int restingHR, int age) {
 
         /*
-        Returns an array[9] with the results of Karvonen Heart Rate formula:
-            (((220 - age) - restingHR) * intensity) + restingHR
-            - intensity = 55+(5*element) where element is the current element in the array[0-8]
+        Returns an array[9] with the results of Karvonen Heart Rate formula with each element storing the intensity
+        55+(5n)
          */
 
-        //For loop incrementing intensity by 5 until it is larger than 95
-            //Store value as result of targetHeartRate(restingHR, age, intensity)
-            //Increment array element counter
-        //Return array
+        int[] data = new int[9];
+        int i = 0;
+        for (int intensity = 55; intensity <= 95; intensity += 5) {         //For loop incrementing intensity by 5
+            data[i] = getTargetHeartRate(restingHR, age, intensity);            //Calls KHR formula and stores result
+            i++;
+        }
 
-        return null;
+        return data;
     }
-    public static String getOutput(int[] data, int restingHR, int age) {
+
+
+   public static String getOutput(int[] data, int restingHR, int age) {
 
         /*
         Generates the wacky output table.
-        Not totally set on how I want this to work, but it is going to work in two steps.
-            1. Printing the stuff not reliant on the data[]
-            2. Printing the stuff that I need to access data[] for
-        I'll probably end up using the StringBuilder object thingy for simplicity, but I don't anticipate that this is
-        going to be a challenge.
-        I'll have to end up using string padding n' stuff, but it'll be okay.
+        Conceptually, it generates the table procedurally, moving from the top to the bottom.
+        A loop is used to add the intensities to the output string, accessing the data[] array
          */
 
-        //input top half of table + restingHR & age data
-        //Increment through data array
-            //add "55+(5*element)%     | data bpm"
-        //Return output
+        StringBuilder output = new StringBuilder();                                         //input top half of table
+        output.append(format("%nResting Pulse: %d%13s%d%n%n", restingHR, "Age: ", age));
+        output.append(format("Intensity    | Rate%n-------------|--------%n"));
+        for (int i = 0; i < 9; i++) {                                                       //add all the intensities
+            output.append(format("%d%%          | %d bpm%n", 55 + (5 * i), data[i]));
+        }
 
-        return "";
+        return output.toString();                                                           //return the output string
     }
+
+
+    private static int getTargetHeartRate(int restingHR, int age, int intensity) {
+        /*
+        Returns the result of the following formula:
+            (((220 - age) - restingHR) * intensity) + restingHR
+         */
+
+        return (int)Math.round((((220 - age) - restingHR) * (intensity/100.0)) + restingHR);
+    }
+
+
     private static int getInput(String prompt) {
 
         /*
@@ -89,14 +113,14 @@ public class Solution31 {
             2. If not, the input is returned as an integer.
          */
 
-        //Loop
-        //Output prompt to console
-        //Read console input
-        //Determine if input is an integer
-            //If yes, break the loop
-            //If no, tell console to put in an integer
-        //Return input
-
-        return 0;
+        while(true) {                                                                   //Loop
+            System.out.printf("%s", prompt);                                            //Output prompt to console
+            String input = sc.next();                                                   //Read console input to string
+            try {
+                return Integer.parseInt(input);                                         //Return the input as int
+            } catch(NumberFormatException e) {                                              //If not an int, loop again
+                System.out.printf("%s%n", "Please enter a valid numeric input.");
+            }
+        }
     }
 }

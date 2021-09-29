@@ -38,6 +38,7 @@ class Solution31Test {
 
 
         String expected = """
+
    Resting Pulse: 65        Age: 22
    
    Intensity    | Rate
