@@ -13,13 +13,13 @@ public class Solution29 {
 
     public static void main(String[] args) {
 
-
-        int rate = getRate();                           //Call getRate() to prompt and read in valid input
-        System.out.printf("%s%n", getYears(rate));      //Print output string from getYears()
+        Solution29 solution = new Solution29();
+        int rate = solution.getRate();                           //Call getRate() to prompt and read in valid input
+        System.out.printf("%s%n", solution.getYears(rate));      //Print output string from getYears()
 
     }
 
-    public static String getYears(int rate) {
+    public String getYears(int rate) {
 
         /*
         Calculates the number of years needed to double the initial investment.
@@ -31,7 +31,7 @@ public class Solution29 {
         return  String.format("It will take %d years to double your initial investment.", years);
     }
 
-    private static int getRate() {
+    private int getRate() {
 
         /*
         Prompts for the rate of return and only accepts a numeric value
