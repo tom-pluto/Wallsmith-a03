@@ -25,6 +25,8 @@ public class Solution24 {
 
     public static void main(String[] args) {
 
+        Solution24 solution = new Solution24();
+
         System.out.print("Enter two strings and I'll tell you if they are anagrams:\n");
 
         System.out.print("Enter the first string: "); // Prompt for & read in string a
@@ -33,11 +35,11 @@ public class Solution24 {
         System.out.print("Enter the second string: "); // Prompt for & read in string b
         String b = sc.next();
 
-        String output = determineOutput(a, b);
+        String output = solution.determineOutput(a, b);
         System.out.printf("%s", output);
     }
 
-    public static String determineOutput(String a, String b) {
+    public String determineOutput(String a, String b) {
 
         String result;
 
@@ -51,7 +53,7 @@ public class Solution24 {
         return result;
     }
 
-    public static boolean isAnagram(String a, String b){
+    public boolean isAnagram(String a, String b){
 
         if(a.length() != b.length()) {      // If the length of the two strings are not the same
             return false;                       // Return False
@@ -63,11 +65,6 @@ public class Solution24 {
         char[] sortedB = b.toLowerCase().toCharArray();
         Arrays.sort(sortedB);     // Sort b alphabetically
 
-        if(Arrays.equals(sortedA, sortedB)) {   // If a equals b : return true
-            return true;
-        }
-        else {                                  // Else : return false
-            return false;
-        }
+        return Arrays.equals(sortedA, sortedB);
     }
 }
