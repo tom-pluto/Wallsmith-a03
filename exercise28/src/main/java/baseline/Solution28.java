@@ -34,13 +34,14 @@ public class Solution28 {
 
     public static void main(String[] args) {
 
-        int[] inputArray = new int[5];                          //Create array to hold 5 numbers
-        inputArray = getInput(inputArray);                      //Populate array by calling getInput() //also I think the SonarLint is messing up on this line
-        int total = getSum(inputArray);                         //Calculate total by calling getSum()
-        System.out.printf("%s", getOutput(total));              //Print output
+        Solution28 solution = new Solution28();
+
+        int[] inputArray = solution.getInput();                 //Populate array by calling getInput()
+        int total = solution.getSum(inputArray);                //Calculate total by calling getSum()
+        System.out.printf("%s", solution.getOutput(total));     //Print output
 
     }
-    public static int getSum(int[] inputArray){
+    public int getSum(int[] inputArray){
 
         /*
         Takes in an array and returns the sum of that array.
@@ -51,14 +52,17 @@ public class Solution28 {
         return sum;                                 //Return sum
     }
 
-    private static String getOutput(int total){
+    private String getOutput(int total){
         return "The total is "+total+".\n";
     }
-    private static int[] getInput(int[] inputArray) {
+
+    private int[] getInput() {
 
         /*
         Prompts the user for a number in 5 times, returning results in elements 0-4 inclusive of the passed array.
          */
+
+        int[] inputArray = new int[5];
 
         for (int i = 0; i < 5; i++) {                           //Iterates through array
             System.out.printf("%s", "Enter a number: ");        //Prompt each iteration for a number
