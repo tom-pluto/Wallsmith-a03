@@ -31,11 +31,12 @@ package baseline;
 public class Solution30 {
     public static void main(String[] args) {
 
-        int[][] multiTable = getMultiplicationTable();      //Call getMultiplicationTable() to generate multiTable[][]
-        System.out.printf("%s", getOutput(multiTable));     //Print the output text by calling getOutput to make string
+        Solution30 solution = new Solution30();
+        int[][] multiTable = solution.getMultiplicationTable();      //Call getMultiplicationTable() to generate multiTable[][]
+        System.out.printf("%s", solution.getOutput(multiTable));     //Print the output text by calling getOutput to make string
 
     }
-    public static int[][] getMultiplicationTable(){
+    public int[][] getMultiplicationTable(){
 
         /*
         Generates a multiplication table for 1-12 inclusive.
@@ -52,7 +53,7 @@ public class Solution30 {
 
         return multiTable;                                      //Returns filled 2D array
     }
-    public static String getOutput(int[][] multiTable) {
+    public String getOutput(int[][] multiTable) {
 
         /*
         Generates a "table" from a passed 2D array, outputting as a string.

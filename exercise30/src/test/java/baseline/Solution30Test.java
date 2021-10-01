@@ -1,14 +1,19 @@
 package baseline;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Solution30")
 class Solution30Test {
 
+    private final Solution30 solution = new Solution30();
+
     @Test
+    @DisplayName("getMultiplicationTable()")
     void getMultiplicationTable() {
         int[][] expected = {
                 {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12},
@@ -24,12 +29,13 @@ class Solution30Test {
                 {11, 22, 33, 44, 55, 66, 77, 88, 99, 110, 121, 132},
                 {12, 24, 36, 48, 60, 72, 84, 96, 108, 120, 132, 144}
                 };
-        int[][] actual = Solution30.getMultiplicationTable();
+        int[][] actual = solution.getMultiplicationTable();
 
         assertTrue(Arrays.deepEquals(actual, expected), "Example Output Test\n");
     }
 
     @Test
+    @DisplayName("getOutput()")
     void getOutput() {
         int[][] exTable = {
                 {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12},
@@ -61,7 +67,7 @@ class Solution30Test {
                            11   22   33   44   55   66   77   88   99  110  121  132
                            12   24   36   48   60   72   84   96  108  120  132  144
                         """;
-        String actual = Solution30.getOutput(exTable);
+        String actual = solution.getOutput(exTable);
 
         assertEquals(expected, actual);
     }
