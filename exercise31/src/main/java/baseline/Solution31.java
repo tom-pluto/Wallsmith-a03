@@ -48,16 +48,23 @@ public class Solution31 {
 
     public static void main(String[] args) {
 
+        Solution31 solution = new Solution31();
 
-        int restingHR = getInput("Enter resting heart rate: ");  //Prompt and read in restingHR using getInput()
-        int age = getInput("Enter age: ");                          //Prompt and read in age using getInput()
-        int[] data = getData(restingHR, age);                              //Build array containing KHR formula results
-        System.out.printf("%s", getOutput(data, restingHR, age));          //Call getOutput() and output result
+        //Prompt and read in restingHR using getInput()
+        int restingHR = solution.getInput("Enter resting heart rate: ");
+
+        //Prompt and read in age using getInput()
+        int age = solution.getInput("Enter age: ");
+
+        //Build array containing KHR formula results
+        int[] data = solution.getData(restingHR, age);
+
+        //Call getOutput() and output result
+        System.out.printf("%s", solution.getOutput(data, restingHR, age));
 
     }
 
-
-    public static int[] getData(int restingHR, int age) {
+    public int[] getData(int restingHR, int age) {
 
         /*
         Returns an array[9] with the results of Karvonen Heart Rate formula with each element storing the intensity
@@ -75,7 +82,7 @@ public class Solution31 {
     }
 
 
-   public static String getOutput(int[] data, int restingHR, int age) {
+   public String getOutput(int[] data, int restingHR, int age) {
 
         /*
         Generates the wacky output table.
@@ -94,7 +101,8 @@ public class Solution31 {
     }
 
 
-    private static int getTargetHeartRate(int restingHR, int age, int intensity) {
+    private int getTargetHeartRate(int restingHR, int age, int intensity) {
+
         /*
         Returns the result of the following formula:
             (((220 - age) - restingHR) * intensity) + restingHR
@@ -104,7 +112,7 @@ public class Solution31 {
     }
 
 
-    private static int getInput(String prompt) {
+    private int getInput(String prompt) {
 
         /*
         Prompts and reads in an input. Will only accept the input if it's an integer.
