@@ -5,13 +5,16 @@
 
 package baseline;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("PaymentCalculator Tests")
 class PaymentCalculatorTest {
 
     @Test
+    @DisplayName("Testing calculateMonthsUntilPaidOff()")
     void calculateMonthsUntilPaidOff() {
 
         double i_test1 = 0.12 / 365.0;

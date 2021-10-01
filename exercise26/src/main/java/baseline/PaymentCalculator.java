@@ -1,3 +1,9 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 3 Solutions
+ *  Copyright 2021 Thomas Wallsmith
+ */
+
+
 package baseline;
 
 import static java.lang.Math.*;
@@ -7,8 +13,6 @@ public class PaymentCalculator {
     private final double i; //daily rate
     private final double b; //balance
     private final double p; //monthly payment
-
-    //these classes are so dumb why is there an entire class for this why
 
     public PaymentCalculator(double iNew, double bNew, double pNew) {
         i = iNew;

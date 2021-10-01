@@ -42,29 +42,43 @@ public class Solution26 {
 
     public static void main(String[] args) {
 
-        //Prompt for and read b
-        System.out.printf("%s", "What is your balance? ");
-        double b = sc.nextDouble();
+        Solution26 solution = new Solution26();
 
-        //Prompt for and read APR
-        System.out.printf("%s", "What is the APR on the card (as a percent)? ");
-        double i = ((sc.nextDouble())/100)/365;  // daily rate = (APR/365)
+        //Prompt for and read balance
+        double balance = getBalance();
 
-        //Prompt for and read p (monthly payment)
-        System.out.printf("%s", "What is the monthly payment you can make? ");
-        double p = sc.nextDouble();
+        //Prompt for and read apr
+        double apr = getApr();
+
+        //Prompt for and read monthlyPayment (monthly payment)
+        double monthlyPayment = getMonthlyPayment();
 
         //Construct new PaymentCalculator class
-        PaymentCalculator pC = new PaymentCalculator(i,b,p);
+        PaymentCalculator pC = new PaymentCalculator(apr,balance,monthlyPayment);
 
         //Call calculateMonthsUntilPayOff on the class & store result
         double months = pC.calculateMonthsUntilPaidOff();
 
         //Print result
-        System.out.printf("%s\n", getOutput(months));;
+        System.out.printf("%s%n", solution.getOutput(months));
     }
 
-    public static String getOutput(double months) {
+    private static double getMonthlyPayment() {
+        System.out.printf("%s", "What is the monthly payment you can make? ");
+        return sc.nextDouble();
+    }
+
+    private static double getApr() {
+        System.out.printf("%s", "What is the apr on the card (as a percent)? ");
+        return ((sc.nextDouble())/100)/365;
+    }
+
+    private static double getBalance() {
+        System.out.printf("%s", "What is your balance? ");
+        return sc.nextDouble();
+    }
+
+    public String getOutput(double months) {
         return format("It will take you %.0f months to pay off this card.", months);
     }
 }
