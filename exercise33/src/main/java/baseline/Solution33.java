@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Solution33 {
-    
+
     private static final Scanner in = new Scanner(System.in);
     private static final Random rand = new Random();
 
@@ -33,17 +33,17 @@ public class Solution33 {
                 "Yes."       "No."        "Maybe."     "Ask again later."
          */
 
-        int rand = getRandomNumberBetween1And4();   //Get Random number
+        int randomNumber = getRandomNumberBetween1And4();   //Get Random number
 
-        if(rand == 1) return "Yes.";                //If the random number equals 1, return "Yes."
-        if(rand == 2) return "No.";                 //If the random number equals 2, return "No."
-        if(rand == 3) return "Maybe.";              //If the random number equals 3, return "Maybe."
+        if(randomNumber == 1) return "Yes.";                //If the random number equals 1, return "Yes."
+        if(randomNumber == 2) return "No.";                 //If the random number equals 2, return "No."
+        if(randomNumber == 3) return "Maybe.";              //If the random number equals 3, return "Maybe."
         else return "Ask again later.";             //If the random number equals 4, return "Ask again later."
     }
     public int getRandomNumberBetween1And4() {
         
         /*
-        Creates a random number inbetween 1 and 4 inclusive
+        Creates a random number between 1 and 4 inclusive
          */
 
         return rand.nextInt(4)+1;
@@ -61,4 +61,5 @@ public class Solution33 {
         //Read in question into nothing because nobody cares what you have to say. They all just pretend to care.
         in.next();
     }
+
 }
