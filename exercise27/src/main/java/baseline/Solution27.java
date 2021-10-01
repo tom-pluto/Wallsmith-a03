@@ -54,27 +54,30 @@ public class Solution27 {
 
     public static void main(String[] args) {
 
+        Solution27 solution = new Solution27();
+
         //Prompt and read firstName
-        System.out.printf("%s", "Enter the first name: ");
-        String firstName = sc.next();
+        String firstName = solution.getString("Enter the first name: ");
+
         //Prompt and read lastName
-        System.out.printf("%s", "Enter the last name: ");
-        String lastName = sc.next();
+        String lastName = solution.getString("Enter the last name: ");
+
         //Prompt and read zipCode
-        System.out.printf("%s", "Enter the ZIP code: ");
-        String zipCode = sc.next();
+        String zipCode = solution.getString("Enter the ZIP code: ");
+
         //Prompt and read employeeID
-        System.out.printf("%s", "Enter the employee ID: ");
-        String employeeID = sc.next();
+        String employeeID = solution.getString("Enter the employee ID: ");
+
         //Print output of validateInput()
-        System.out.printf("%s", validateInput(firstName, lastName, zipCode, employeeID));
+        System.out.printf("%s", solution.validateInput(firstName, lastName, zipCode, employeeID));
 
     }
-    public static String validateInput(String firstName, String lastName, String zipCode, String employeeID) {
+
+    public String validateInput(String firstName, String lastName, String zipCode, String employeeID) {
 
         /*
         Builds an output string containing the any missed criteria.
-        Passes relevant strings to the associate validation method.
+        Passes relevant strings to the associated validation method.
          */
 
         String output;
@@ -91,7 +94,29 @@ public class Solution27 {
 
     }
 
-    private static String validateFirstName(String firstName) {
+    private String validateZipcode(String zipCode) {
+
+        /*
+        Determines if the string zipCode is a valid zipcode or not.
+        A valid zipcode is any zipcode that is both a number and at least 5 digits.
+         */
+
+        try{                                                        //Attempt integer conversion of zipCode
+            Integer.parseInt(zipCode);
+        }
+        catch (NumberFormatException e){                            //Catch exception (if any) and return err string
+            return "The zipcode must be a 5 digit number.\n";
+        }
+
+        if(zipCode.length() != 5) {                                 //Check zipCode is less than 5 characters
+            return "The zipcode must be a 5 digit number.\n";           //If yes, return err string
+        }
+        else{
+            return "";                                                  //Otherwise, returns nothing.
+        }
+    }
+
+    private String validateFirstName(String firstName) {
 
         /*
         Determines if the passed string if the "first name" string passed to it is valid.
@@ -108,9 +133,9 @@ public class Solution27 {
         else {
             return "";
         }
-
     }
-    private static String validateLastName(String lastName) {
+
+    private String validateLastName(String lastName) {
 
         /*
         Determines if the passed string if the "last name" string passed to it is valid.
@@ -130,7 +155,7 @@ public class Solution27 {
 
         return output;
     }
-    private static String validateEmployeeID(String employeeID) {
+    private String validateEmployeeID(String employeeID) {
 
         /*
         This is so ugly and I'm sorry.
@@ -156,25 +181,9 @@ public class Solution27 {
 
         return "";
     }
-    private static String validateZipcode(String zipCode) {
 
-        /*
-        Determines if the string zipCode is a valid zipcode or not.
-        A valid zipcode is any zipcode that is both a number and at least 5 digits.
-         */
-
-        try{                                                        //Attempt integer conversion of zipCode
-            Integer.parseInt(zipCode);
-        }
-        catch (NumberFormatException e){                            //Catch exception (if any) and return err string
-            return "The zipcode must be a 5 digit number.\n";
-        }
-
-        if(zipCode.length() != 5) {                                 //Check zipCode is less than 5 characters
-            return "The zipcode must be a 5 digit number.\n";           //If yes, return err string
-        }
-        else{
-            return "";                                                  //Otherwise, returns nothing.
-        }
+    private String getString(String s) {
+        System.out.printf("%s", s);
+        return sc.next();
     }
 }
