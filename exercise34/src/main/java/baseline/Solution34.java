@@ -6,67 +6,87 @@
 package baseline;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class Solution34 {
 
-    //Private scanner declaration goes here
+    private final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        //Generate ArrayList of employees with names from the assignment instructions       getNewEmployeeList()
-        //Print the list                                                                    printEmployeeList()
-        //Prompt for an employee name to be removed                                         getInput()
-        //Remove that employee from the list                                                removeEmployeeFromList()
-        //Print the list                                                                    printEmployeeList()
+        Solution34 solution = new Solution34();
+
+        //Generate ArrayList of employees with names from the assignment instructions
+        List<String> employeeList = solution.getNewEmployeeList(new String[]{"John Smith", "Jackie Jackson", "Chris Jones", "Amanda Cullen", "Jeremy Goodwin"});
+
+        //Print the list
+        solution.printEmployeeList(employeeList);
+
+        //Prompt for an employee name to be removed
+        String targetEmployee = solution.getInput();
+        System.out.printf("%n");
+
+        //Remove that employee from the list
+        employeeList = solution.removeEmployeeFromList(employeeList, targetEmployee);
+
+        //Print the list
+        solution.printEmployeeList(employeeList);
 
     }
 
-    public ArrayList<String> getNewEmployeeList(String[] employeeNames) {
+    public List<String> getNewEmployeeList(String[] employeeNames) {
 
         /*
         Takes a passed in array of strings containing employee names and creates a ArrayList containing those names.
          */
 
-        //Create blank ArrayList for strings
-        //Looping for each employee name passed
-            //Add employeeName[i] to the arrayList
-        //Return the ArrayList
+        //Return employeeNames as ArrayList
+        return new ArrayList<>(Arrays.asList(employeeNames));                                                           //Return the ArrayList
 
-        return null;
     }
-
-    public ArrayList<String> removeEmployeeFromList(ArrayList<String> employeeList, String targetEmployee) {
+    public List<String> removeEmployeeFromList(List<String> employeeList, String targetEmployee) {
 
         /*
         Removes the employee matching the string from the supplied list, and returns the new list.
          */
 
         //Remove employee from list
-        //Return new list w/o the employee in it
+        employeeList.remove(targetEmployee);
 
-        return null;
+        //Return new list w/o the employee in it
+        return employeeList;
+
     }
 
-    private void printEmployeeList(ArrayList<String> employeeList) {
+    private void printEmployeeList(List<String> employeeList) {
 
         /*
         Prints the passed ArrayList (representing a list of employees) to the console.
          */
 
         //Print how many employees there are
+        System.out.printf("There are %d employees:%n", employeeList.size());
+
         //Print each employee
+        for(String str: employeeList) {
+            System.out.printf("%s%n", str);
+        }
 
     }
-
-    private String getInput(String prompt) {
+    private String getInput() {
 
         /*
         Prompts the user to enter something, and reads it in. Returns a string.
          */
 
         //Prompt console for input
-        //Return string input
+        System.out.printf("%n%s", "Enter an employee name to remove: ");
 
-        return "";
+        //Return user's string input
+        sc.useDelimiter("\n");
+        return sc.next();
+
     }
 }
