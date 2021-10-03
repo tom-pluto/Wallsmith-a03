@@ -5,24 +5,42 @@
 
 package baseline;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import static java.lang.Math.round;
 
 public class Solution36 {
 
-    //Private scanner declaration goes here
+    private final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        //Get input data from user                              getInputFromUser()
-        //Print all the numbers given by the user               printAllNumbers()
-        //Print the average                                     average()
-        //Print the minimum                                     min()
-        //Print the maximum                                     max()
-        //Print the standard deviation                          std()
+        //Create instance of Solution36
+        Solution36 sol = new Solution36();
+
+        //Get input data from user using getInputFromUser()
+        List<Integer> integerList = sol.getIntegerListFromUser("Enter a number: ");
+
+        //Print all the numbers given by the user using printAllNumbers()
+        System.out.printf("%s%n", sol.generateStringOutput(integerList));
+
+        //Print the average using average()
+        System.out.printf("The average is %.1f%n", sol.average(integerList));
+
+        //Print the minimum using min()
+        System.out.printf("The minimum is %d%n", sol.min(integerList));
+
+        //Print the maximum using max()
+        System.out.printf("The maxmimum is %d%n", sol.max(integerList));
+
+        //Print the standard deviation using std()
+        System.out.printf("The standard deviation is %.2f%n", sol.std(integerList));
 
     }
 
-    /*PROTOTYPED*/ public double average(List<Integer> integerList) {
+    public double average(List<Integer> integerList) {
 
         /*
         Calculates the average of every number in an List of integers
@@ -30,68 +48,84 @@ public class Solution36 {
 
         //I actually think I can do this in one line with some Java wizardry, but I'll write out the expected method
 
-        //For every element of ingerList
-            //sum += element
-        //Average = sum/(length of integerList)
-        //Return average
+        //Initalize sum to 0
+        int sum = 0;
 
-        return 0;
+        //For every element of ingerList, add the element to sum
+        for (int i = 0; i < integerList.size(); i++) {
+            sum += integerList.get(i);
+        }
+
+        //Calculate and return average
+        return sum/integerList.size();
     }
-    /*PROTOTYPED*/ public int min(List<Integer> integerList) {
+    public int min(List<Integer> integerList) {
 
         /*
         Returns the smallest thing in a list of integers
          */
 
-        //Determine if integerList is populated
-            //No : Return 0
+        //If integerList is empty, return 0
+        if(integerList.isEmpty()) return 0;
 
         //Initalize record to the first element of the list
+        int record = integerList.get(0);
 
-        //For every element in integerList
-            //If the element is smaller than the record, set the record to the current element's value
+        //For every element in integerList, set the record to the current element if it is smaller
+        for (int i = 0; i < integerList.size(); i++) if(integerList.get(i) < record) record = integerList.get(i);
 
         //Return the record
+        return record;
 
-        return 0;
     }
-    /*PROTOTYPED*/ public int max(List<Integer> integerList) {
+    public int max(List<Integer> integerList) {
 
         /*
         Returns the largest thing in a list of integers
          */
 
-        //Determine if integerList is populated
-            //No : Return 0
+        //If integerList is empty, return 0
+        if(integerList.isEmpty()) return 0;
 
-        //Initalize record to the first element of the list
+        //Initalize record to 0
+        int record = 0;
 
-        //For every element in integerList
-            //If the element is greater than the record, set the record to the current element's value
+        //For every element in integerList, set the record to the current element if it is bigger
+        for (int i = 0; i < integerList.size(); i++) if(integerList.get(i) > record) record = integerList.get(i);
 
         //Return the record
-
-        return 0;
+        return record;
     }
-    /*PROTOTYPED*/ public double std(List<Integer> integerList) {
+    public double std(List<Integer> integerList) {
 
         /*
         Returns the standard deviation
          */
 
         //Initalize totalSqDiffToMean to 0
+        double totalSqDiffToMean = 0;
 
         //Find the mean of integerList
-        //For each data point:
-            //Find the square of the distance from this point to the mean (sqDiffToMean)
-            //Add sqDiffToMean to totalSqDiffToMean
-        //Divide totalSqDiffToMean by the number of datapoints to find meanDiff
-        //Return the square root of meanDiff
+        double mean = average(integerList);
 
-        return 0;
+        //For each data point:
+        for (int i = 0; i < integerList.size(); i++) {
+
+            double val = integerList.get(i);
+
+            //Find the square of the distance from this point to the mean and add to totalSqDiffToMean
+            totalSqDiffToMean += Math.pow(val - mean, 2);
+
+        }
+
+        //Divide totalSqDiffToMean by the number of datapoints to find meanDiff
+        double meanDiff = (double) totalSqDiffToMean/ (double) integerList.size();
+
+        //Return the square root of meanDiff
+        return Math.sqrt(meanDiff);
     }
 
-    /*PROTOTYPED*/ private List<Integer> getManyStringsFromUser(String prompt) {
+    private List<Integer> getIntegerListFromUser(String prompt) {
 
         /*
         Prompts the user with the passed string, reads an input, adds it to an array, and loops over again.
@@ -99,29 +133,64 @@ public class Solution36 {
          */
 
         //Create new blank integer list
-        //Loop
-            //Print prompt to console.
-            //Read in the console input as a string.
-            //Determine if string is equal to "done".
-                //If true, break the loop.
-            //Determine if the string is a integer
-                //If yes, add that integer to the list
-                //If not, print that the input is not a valid input
-        //Return the list of inputs
+        List<Integer> integerList = new ArrayList<>();
 
-        return null;
+        //Loop
+        while(true) {
+
+            //Print prompt to console.
+            System.out.printf("%s", prompt);
+
+            //Read in the console input as a string.
+            String input = sc.nextLine();
+
+            //If string is equal to "done", break the loop
+            if(input.equals("done")) break;
+
+            //Determine if the string is a integer
+            try{
+
+                //If yes, add that integer to the list
+                integerList.add(Integer.parseInt(input));
+
+            } catch(NumberFormatException e) {
+
+                //If not, print that the input is not a valid input
+                System.out.printf("%s%n", "Please enter integer inputs only.");
+
+            }
+        }
+
+        //Return the list of inputs
+        return integerList;
+
     }
-    /*PROTOTYPED*/ private void printAllNumbers(List<Integer> integerList) {
+    private String generateStringOutput(List<Integer> integerList) {
 
         /*
         Prints all the integers in a list in the order they appear.
          */
 
-        //Print "Numbers: " prior to listing elements
-        //Loop that runs for as many elements are in integerList
-            //Print element to console
-        //Print newline to console
+        StringBuilder output = new StringBuilder();
 
+        //Add "Numbers: " to output prior to listing elements
+        output.append("Numbers: ");
+
+        //If integerList is empty, return output.
+        if(integerList.isEmpty()) return output.toString();
+
+        //Loop that runs for as many elements are in integerList
+        for (int i = 0; i < integerList.size(); i++) {
+
+            //Add element to output
+            output.append(String.format("%d", integerList.get(i)));
+
+            //If num does not equal the last element, add a comma and space to console
+            if(i != integerList.size()-1) output.append(", ");
+        }
+
+        //Return output
+        return output.toString();
     }
 
 }

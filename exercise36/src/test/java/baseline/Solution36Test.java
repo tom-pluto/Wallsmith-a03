@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 3 Solutions
+ *  Copyright 2021 Thomas Wallsmith
+ */
+
 package baseline;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class Solution36Test {
 
     private Solution36 test = new Solution36();
-    private List<Integer> test1_integerList = new ArrayList(Arrays.asList(new int[]{100, 200, 1000, 300}));
+    private List<Integer> test1_integerList = Arrays.asList(100, 200, 1000, 300);
 
     @Test
     @DisplayName("average() Test")
@@ -22,7 +27,7 @@ class Solution36Test {
         double test1_expected = 400.0;
         double test1_actual = test.average(test1_integerList);
 
-        System.out.printf("test1_expected = %.2f %ntest1_actual = %.2f", test1_actual, test1_expected);
+        System.out.printf("test1_expected = %.2f %ntest1_actual = %.2f", test1_expected, test1_actual);
         assertEquals(test1_expected, test1_actual, 0.0000000001, "Test 1");
 
     }
@@ -34,7 +39,7 @@ class Solution36Test {
         int test1_expected = 100;
         int test1_actual = test.min(test1_integerList);
 
-        System.out.printf("test1_expected = %d %ntest1_actual = %d", test1_actual, test1_expected);
+        System.out.printf("test1_expected = %d %ntest1_actual = %d", test1_expected, test1_actual);
         assertEquals(test1_expected, test1_actual, "Test 1");
 
     }
@@ -44,9 +49,9 @@ class Solution36Test {
     void max() {
 
         int test1_expected = 1000;
-        int test1_actual = test.min(test1_integerList);
+        int test1_actual = test.max(test1_integerList);
 
-        System.out.printf("test1_expected = %d %ntest1_actual = %d", test1_actual, test1_expected);
+        System.out.printf("test1_expected = %d %ntest1_actual = %d", test1_expected, test1_actual);
         assertEquals(test1_expected, test1_actual, "Test 1");
 
     }
@@ -58,8 +63,8 @@ class Solution36Test {
         double test1_expected = 353.55;
         double test1_actual = test.std(test1_integerList);
 
-        System.out.printf("test1_expected = %.2f %ntest1_actual = %.2f", test1_actual, test1_expected);
-        assertEquals(test1_expected, test1_actual, 0.0000000001, "Test 1");
+        System.out.printf("test1_expected = %.2f %ntest1_actual = %.2f", test1_expected, test1_actual);
+        assertEquals(test1_expected, test1_actual, 0.01, "Test 1");
 
     }
 }
