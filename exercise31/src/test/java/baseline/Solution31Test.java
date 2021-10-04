@@ -1,4 +1,9 @@
 /*
+ *  UCF COP3330 Fall 2021 Assignment 3 Solutions
+ *  Copyright 2021 Thomas Wallsmith
+ */
+
+/*
 Example Output
 >   Resting Pulse: 65        Age: 22
 

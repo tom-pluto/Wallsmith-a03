@@ -1,3 +1,8 @@
+package baseline;/*
+ *  UCF COP3330 Fall 2021 Assignment 3 Solutions
+ *  Copyright 2021 Thomas Wallsmith
+ */
+
 import baseline.Solution24;
 import org.junit.jupiter.api.Test;
 
