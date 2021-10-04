@@ -12,9 +12,13 @@ public class Employee {
     private String position;
     private String separationDate;
 
-    public Employee(String firstName, String lastName, String position, String separationDate) {
+    public Employee(String newFirstName, String newLastName, String newPosition, String newSeparationDate) {
 
         //create new employee with the passed parameters
+        firstName = newFirstName;
+        lastName = newLastName;
+        position = newPosition;
+        separationDate = newSeparationDate;
 
     }
 
