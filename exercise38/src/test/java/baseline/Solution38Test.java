@@ -20,7 +20,6 @@ class Solution38Test {
     private Solution38 test = new Solution38();
 
     @Test
-    @DisplayName("convertInputStringToList()")
     void convertInputStringToList() {
 
         String testInput = "1 2 3 4 5 6 7 8 9";
@@ -41,6 +40,20 @@ class Solution38Test {
         System.out.printf("Expected : %s%n" +
                 "Actual : %s%n", expected, actual);
         assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void isEven() {
+
+        int testInput1 = 1;
+        int testInput2 = 2;
+        boolean expected1 = false;
+        boolean expected2 = true;
+        boolean actual1 = test.isEven(testInput1);
+        boolean actual2 = test.isEven(testInput2);
+        assertEquals(expected1, actual1, "Even case");
+        assertEquals(expected2, actual2, "Odd case");
 
     }
 }
