@@ -64,7 +64,7 @@ class Solution39Test {
     @Test
     void createEmployeeTreeMap() {
 
-        TreeMap<String, Employee> actual = test.createEmployeeTreeMap(givenEmployeeList);
+        TreeMap<String, Employee> actual = (TreeMap<String, Employee>) test.createEmployeeTreeMap(givenEmployeeList);
 
         System.out.printf("Expected: %s %n" + "Actual: %s %n", expectedTreeMap.firstEntry().getKey(), actual.firstEntry().getKey());
         assertEquals(expectedTreeMap.firstEntry().getKey(), actual.firstEntry().getKey());

@@ -7,10 +7,10 @@ package baseline;
 
 public class Employee {
 
-    private String firstName;
-    private String lastName;
-    private String position;
-    private String separationDate;
+    private final String firstName;
+    private final String lastName;
+    private final String position;
+    private final String separationDate;
 
     public Employee(String newFirstName, String newLastName, String newPosition, String newSeparationDate) {
 
@@ -22,7 +22,7 @@ public class Employee {
 
     }
 
-    /* Not pseudocoding, this should be self explanitory */
+    /* No pseudocode, this should be self-explanatory */
 
     public String getFirstName() {
         return firstName;

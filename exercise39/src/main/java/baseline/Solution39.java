@@ -8,6 +8,7 @@ package baseline;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class Solution39 {
@@ -20,7 +21,7 @@ public class Solution39 {
         List<Employee> employeeList = sol.createEmployeeList();
 
         //Convert the list to a TreeMap                     createEmployeeTreeMap()
-        TreeMap<String, Employee> employeeTreeMap = sol.createEmployeeTreeMap(employeeList);
+        TreeMap<String, Employee> employeeTreeMap = (TreeMap<String, Employee>) sol.createEmployeeTreeMap(employeeList);
 
         //Output the TreeMap as a table                     outputEmployeeTreeMap()
         sol.outputEmployeeTreeMap(employeeTreeMap);
@@ -45,7 +46,7 @@ public class Solution39 {
 
     }
 
-    public TreeMap<String, Employee> createEmployeeTreeMap(List<Employee> employeeList) {
+    public SortedMap<String, Employee> createEmployeeTreeMap(List<Employee> employeeList) {
 
         //Create empty TreeMap
         TreeMap<String, Employee> employeeTreeMap = new TreeMap<>();
@@ -85,17 +86,16 @@ public class Solution39 {
             //Get separation date (can be empty!)
             String separationDate = curr.getValue().getSeparationDate();
 
-            StringBuilder lineOutput = new StringBuilder();
-            lineOutput.append(String.format("%-25s|", " " + fullName));
-            lineOutput.append(String.format("%-25s|", " " + position));
-            lineOutput.append(String.format("%-25s%n", " " + separationDate));
-            output.append(lineOutput.toString());
+            String lineOutput = String.format("%-25s|", " " + fullName) +
+                    String.format("%-25s|", " " + position) +
+                    String.format("%-25s%n", " " + separationDate);
+            output.append(lineOutput);
 
             //Move working map entry to the next highest
             curr = employeeTreeMap.higherEntry(curr.getValue().getLastName());
         }
 
-        System.out.printf("%s", output.toString());
+        System.out.printf("%s", output);
 
     }
 }
