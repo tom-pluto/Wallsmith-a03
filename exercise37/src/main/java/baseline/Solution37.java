@@ -25,25 +25,25 @@ public class Solution37 {
         System.out.printf("Your password is %s%n", sol.generatePassword(minLength, numSpecialChar, numNumbers));
     }
 
-    public String generatePassword(int minLength, int numSpecialChar, int numNumbers) {
+    public String generatePassword(int min, int numSpecialChar, int numNumbers) {
 
-        final List<Character> SPECIALCHARS = Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*' , '_', '+');
-        final List<Character> LETTERS = Arrays.asList('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
-        final List<Character> NUMBERS = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+        final List<Character> specialChars = Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*' , '_', '+');
+        final List<Character> letters = Arrays.asList('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+        final List<Character> numbers = Arrays.asList('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
 
         List<Character> output = new ArrayList<>();
 
         //Add number of numbers to the string
         for (int i = 0; i < numNumbers; i++) {
 
-            output.add(NUMBERS.get(rand.nextInt(10)));
+            output.add(numbers.get(rand.nextInt(10)));
 
         }
 
         //Add number of special characters to the string
         for (int i = 0; i < numSpecialChar; i++) {
 
-            output.add(SPECIALCHARS.get(rand.nextInt(10)));
+            output.add(specialChars.get(rand.nextInt(10)));
 
         }
 
@@ -51,7 +51,12 @@ public class Solution37 {
         //(making sure there are at least as many letters as there are special characters and numbers)
         for (int i = 0; i < numSpecialChar+numNumbers; i++) {
 
-            output.add(LETTERS.get(rand.nextInt(26)));
+            output.add(letters.get(rand.nextInt(26)));
+
+        }
+        while(output.size() < min) {
+
+            output.add(letters.get(rand.nextInt(26)));
 
         }
 
@@ -60,8 +65,8 @@ public class Solution37 {
 
         //Create regular looking string
         StringBuilder sOutput = new StringBuilder();
-        for (int i = 0; i < output.size(); i++) {
-            sOutput.append(output.get(i));
+        for (Character character : output) {
+            sOutput.append(character);
         }
 
         //Return the string

@@ -14,7 +14,7 @@ class Solution37Test {
     @DisplayName("generatePassword()")
     void generatePassword() {
 
-        String actual1 = test.generatePassword(8,2,2);
+        String actual1 = test.generatePassword(10,5,5);
         String actual2 = test.generatePassword(8,2,2);
         System.out.printf("actual 1 = %s%n" +
                 "actual 2 = %s", actual1, actual2);
