@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 3 Solutions
+ *  Copyright 2021 Thomas Wallsmith
+ */
+
 package baseline;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -72,7 +77,14 @@ class Solution40Test {
         List<Employee> expected = Arrays.asList(new Employee("Jacquelyn", "Jackson", "DBA", ""),
                 new Employee("Jake", "Jacobson", "Programmer", ""));
         List<Employee> actual = test.getMatching(expectedTreeMap, "Jac");
-        assertEquals(expected, actual);
+
+        for (int i = 0; i < expected.size(); i++) {
+            System.out.printf("Element: %d%n", i);
+            assertEquals(expected.get(i).getFirstName(), actual.get(i).getFirstName());
+
+        }
+
+
 
     }
 }

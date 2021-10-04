@@ -16,6 +16,10 @@ public class Employee {
     public Employee(String newFirstName, String newLastName, String newPosition, String newSeparationDate) {
 
         //create new employee with the passed parameters
+        firstName = newFirstName;
+        lastName = newLastName;
+        position = newPosition;
+        separationDate = newSeparationDate;
 
     }
 
