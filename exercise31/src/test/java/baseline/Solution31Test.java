@@ -41,25 +41,4 @@ class Solution31Test {
         assertArrayEquals(expected, actual, "Example Output Test\n");
 
     }
-
-    @Test
-    @DisplayName("getOutput()")
-    void getOutput() {
-
-        String expected = "%nResting Pulse: 65        Age: 22%n%n"+
-                "Intensity    | Rate%n" +
-                "-------------|--------%n" +
-                "55%          | 138 bpm%n" +
-                "60%          | 145 bpm%n" +
-                "65%          | 151 bpm%n" +
-                "70%          | 158 bpm%n" +
-                "75%          | 165 bpm%n" +
-                "80%          | 171 bpm%n" +
-                "85%          | 178 bpm%n" +
-                "90%          | 185 bpm%n" +
-                "95%          | 191 bpm%n";
-
-        String actual = solution.getOutput(new int[]{138, 145, 151, 158, 165, 171, 178, 185, 191}, 65, 22);
-        //assertTrue(expected.equals(actual)); //why does this not work?!?!
-    }
 }

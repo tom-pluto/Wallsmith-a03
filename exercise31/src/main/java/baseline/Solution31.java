@@ -82,7 +82,7 @@ public class Solution31 {
     }
 
 
-   public String getOutput(int[] data, int restingHR, int age) {
+   private String getOutput(int[] data, int restingHR, int age) {
 
         /*
         Generates the wacky output table.
